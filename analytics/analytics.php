@@ -27,10 +27,12 @@
 
 	
 	function ten($arrLines, $currTime){
+		$arrIpVisits = array();
 		foreach($arrLines as $a){
 			$arrA = explode(' ', $a);
 			if($currTime - $arrA[0] <= 10){
-				print($arrA[0]."<br>");
+				#graph 2
+				$arrIpVisits[$arrA[1]] = ipvisits($arrIpVisits, $arrA[1]);
 			}
 			
 		}
@@ -38,10 +40,12 @@
 	}
 	
 	function minute($arrLines, $currTime){
+		$arrIpVisits = array();
 		foreach($arrLines as $a){
 			$arrA = explode(' ', $a);
 			if($currTime - $arrA[0] <= 60){
-				print($arrA[0]."<br>");
+				#graph 2
+				$arrIpVisits[$arrA[1]] = ipvisits($arrIpVisits, $arrA[1]);
 			}
 			
 		}
@@ -49,10 +53,12 @@
 	}
 	
 	function hour($arrLines, $currTime){
+		$arrIpVisits = array();
 		foreach($arrLines as $a){
 			$arrA = explode(' ', $a);
 			if($currTime - $arrA[0] <= 3600){
-				print($arrA[0]."<br>");
+				#graph 2
+				$arrIpVisits[$arrA[1]] = ipvisits($arrIpVisits, $arrA[1]);
 			}
 			
 		}
@@ -60,12 +66,26 @@
 	}
 	
 	function all($arrLines, $currTime){
+		$arrIpVisits = array();
 		foreach($arrLines as $a){
 			$arrA = explode(' ', $a);
-			print($arrA[0]."<br>");
+			#graph 2
+			$arrIpVisits[$arrA[1]] = ipvisits($arrIpVisits, $arrA[1]);
 			
 		}
 		echo "all time<br>";
 	}
 
+	#graph 2 function
+	function ipvisits($arrIpVisits, $ip){
+		if(array_key_exists("$arrA[1]", $arrIpVisits)){
+			$arrIpVisits[$ip] = $arrIpVisits[$ip] + 1;
+			#print($arrIpVisits[$arrA[1]]."<br>");
+		}
+		else{
+			$arrIpVisits[$ip] = 0;
+		}
+		
+		return $arrIpVisits[$ip];
+	}
 ?>
